@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.routes.documents import router as documents_router
+from app.api.routes.chat import router as chat_router
 
 app = FastAPI(
     title="RAG Agent API",
@@ -25,3 +26,5 @@ def health_check():
         "message": "RAG Agent funcionando",
         "debug": settings.debug
     }
+
+app.include_router(chat_router)
